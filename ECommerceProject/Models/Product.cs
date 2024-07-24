@@ -43,6 +43,12 @@ namespace ECommerceProject.Models
         public string Description { get; set; }
 
         /// <summary>
+        ///     The sex that this product is targeted towards (men, women, unisex). Unisex by default.
+        /// </summary>
+        [Display(Name = "Target Sex")]
+        public string TargetSex { get; set; } = "Unisex";
+
+        /// <summary>
         ///     If not null, a current promotion that has been applied to this product (ex. Buy 1 Get 1 Free, 20% off).
         ///     Null if there are no current promotions for this product.
         /// </summary>
@@ -58,17 +64,17 @@ namespace ECommerceProject.Models
 
         /// <summary>
         ///     The price this product is currently being sold for. Typically the same as the regular price,
-        ///     except if there is a promotion for this product.
+        ///     except if there is an active promotion for this product.
         /// </summary>
         [Display(Name = "Current Price")]
         public decimal CurrentPrice
         {
             get
             {
-                // If there is a promotion for this product...
-                if (Promotion != null)
-                    // If the type of promotion is a fixed amount off (ex. $20 off)...
-                    return Promotion.Type == "Fixed Amount" ?
+                // If there is an active promotion for this product...
+                if (Promotion != null && Promotion.IsActive)
+                    // If the type of promotion is fixed (ex. $20 off)...
+                    return Promotion.Type == "Fixed" ?
                         RegularPrice - Promotion.AmountOff :  // Subtract the amount off from the regular price
                         RegularPrice * (1 - Promotion.AmountOff);  // Otherwise, deduct the % off from the regular price
 

@@ -26,5 +26,15 @@ namespace ECommerceProject.Models
 
         [Display(Name = "Amount Off")]
         public decimal AmountOff { get; set; }
+
+        [Display(Name = "Active?")]
+        public bool IsActive
+        {
+            get
+            {
+                DateTime currentTime = DateTime.Now;
+                return currentTime.CompareTo(StartDate) >= 0 && currentTime.CompareTo(EndDate) <= 0;
+            }
+        }
     }
 }

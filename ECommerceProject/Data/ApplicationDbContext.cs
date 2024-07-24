@@ -10,5 +10,6 @@ namespace ECommerceProject.Data
             : base(options)
         {
         }
+        public DbSet<ECommerceProject.Models.User> User { get; set; } = default!;
     }
 }

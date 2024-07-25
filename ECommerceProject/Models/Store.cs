@@ -16,16 +16,15 @@ namespace ECommerceProject.Models
         [Display(Name = "Date Published")]
         public DateTime? DatePublished { get; set; }
 
-        [ForeignKey(nameof(Owner))]
         [Display(Name = "Owner")]
         public User Owner { get; set; }
 
         [Display(Name = "Name")]
         public string Name { get; set; }
 
+        [Display(Name = "Domain")]
         public string Domain { get; set; }
 
-        [ForeignKey(nameof(DefaultCurrency))]
         [Display(Name = "Default Currency")]
         public Currency DefaultCurrency { get; set; }
 

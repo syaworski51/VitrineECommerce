@@ -4,6 +4,7 @@ using ECommerceProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerceProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240724191452_NewControllers_Users-Currencies")]
+    partial class NewControllers_UsersCurrencies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,6 +75,10 @@ namespace ECommerceProject.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ProfilePicturePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -95,30 +102,6 @@ namespace ECommerceProject.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ECommerceProject.Models.Category", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("StoreId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StoreId");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("ECommerceProject.Models.Currency", b =>
                 {
                     b.Property<string>("Symbol")
@@ -131,50 +114,6 @@ namespace ECommerceProject.Data.Migrations
                     b.HasKey("Symbol");
 
                     b.ToTable("Currencies");
-                });
-
-            modelBuilder.Entity("ECommerceProject.Models.Store", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DatePublished")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DefaultCurrencySymbol")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Domain")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileStorageDomain")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OwnerUsername")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DefaultCurrencySymbol");
-
-                    b.HasIndex("OwnerUsername");
-
-                    b.ToTable("Stores");
                 });
 
             modelBuilder.Entity("ECommerceProject.Models.User", b =>
@@ -190,16 +129,11 @@ namespace ECommerceProject.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PreferredCurrencySymbol")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ProfilePicturePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Username");
-
-                    b.HasIndex("PreferredCurrencySymbol");
 
                     b.ToTable("Users");
                 });
@@ -339,43 +273,6 @@ namespace ECommerceProject.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("ECommerceProject.Models.Category", b =>
-                {
-                    b.HasOne("ECommerceProject.Models.Store", "Store")
-                        .WithMany()
-                        .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Store");
-                });
-
-            modelBuilder.Entity("ECommerceProject.Models.Store", b =>
-                {
-                    b.HasOne("ECommerceProject.Models.Currency", "DefaultCurrency")
-                        .WithMany()
-                        .HasForeignKey("DefaultCurrencySymbol");
-
-                    b.HasOne("ECommerceProject.Models.User", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerUsername")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DefaultCurrency");
-
-                    b.Navigation("Owner");
-                });
-
-            modelBuilder.Entity("ECommerceProject.Models.User", b =>
-                {
-                    b.HasOne("ECommerceProject.Models.Currency", "PreferredCurrency")
-                        .WithMany()
-                        .HasForeignKey("PreferredCurrencySymbol");
-
-                    b.Navigation("PreferredCurrency");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

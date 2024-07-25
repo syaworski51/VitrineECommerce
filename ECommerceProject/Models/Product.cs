@@ -19,12 +19,6 @@ namespace ECommerceProject.Models
         public string SKU { get; set; }
 
         /// <summary>
-        ///     Universal Product Code - Uniquely identifies this product universally.
-        /// </summary>
-        [Display(Name = "UPC")]
-        public string UPC { get; set; }
-
-        /// <summary>
         ///     The category of this product (ex. clothing, electronics, stationery, etc.).
         /// </summary>
         [Display(Name = "Category")]

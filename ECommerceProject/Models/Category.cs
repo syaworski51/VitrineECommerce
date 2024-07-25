@@ -3,14 +3,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerceProject.Models
 {
-    [Table("Currencies")]
-    public class Currency
+    [Table("Categories")]
+    public class Category
     {
         [Key]
-        [Display(Name = "Symbol")]
-        public string Symbol { get; set; }
+        public Guid Id { get; set; }
+
+        public Store Store { get; set; }
 
         [Display(Name = "Name")]
         public string Name { get; set; }
+
+        [Display(Name = "Description")]
+        public string Description { get; set; }
     }
 }

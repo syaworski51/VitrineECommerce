@@ -1,4 +1,6 @@
-﻿using ECommerceProject.Models;
+﻿using ECommerceProject.MessagingSystem;
+using ECommerceProject.Models;
+using ECommerceProject.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,10 +9,13 @@ namespace ECommerceProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMessenger _messenger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+                              IMessenger messenger)
         {
             _logger = logger;
+            _messenger = messenger;
         }
 
         public IActionResult Index()

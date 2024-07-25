@@ -10,6 +10,9 @@ namespace ECommerceProject.Data
             : base(options)
         {
         }
-        public DbSet<ECommerceProject.Models.User> User { get; set; } = default!;
+        public DbSet<ECommerceProject.Models.User> Users { get; set; } = default!;
+        public DbSet<ECommerceProject.Models.Currency> Currencies { get; set; } = default!;
+        public DbSet<ECommerceProject.Models.Store> Stores { get; set; } = default!;
+        public DbSet<ECommerceProject.Models.Category> Categories { get; set; } = default!;
     }
 }

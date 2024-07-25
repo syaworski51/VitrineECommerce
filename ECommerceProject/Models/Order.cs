@@ -9,7 +9,6 @@ namespace ECommerceProject.Models
         [Key]
         public Guid Id { get; set; }
 
-        [ForeignKey(nameof(User))]
         [Display(Name = "User")]
         public User? User { get; set; }
 

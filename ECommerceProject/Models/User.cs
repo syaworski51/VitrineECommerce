@@ -17,7 +17,7 @@ namespace ECommerceProject.Models
         public string LastName { get; set; }
 
         [Display(Name = "Profile Picture")]
-        public string ProfilePicturePath { get; set; }
+        public string ProfilePicturePath { get; set; } = "~/images/default-profile-picture.png";
 
         [Display(Name = "Preferred Currency")]
         public Currency PreferredCurrency { get; set; }

@@ -4,6 +4,8 @@
     {
         public Guid Id { get; set; }
         public DateTime DatePublished { get; set; }
+        public Store Store { get; set; }
+        public Product Product { get; set; }
         public User Author { get; set; }
         public int Rating { get; set; }
         public string Title { get; set; }

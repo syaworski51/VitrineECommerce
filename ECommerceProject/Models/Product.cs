@@ -43,10 +43,9 @@ namespace ECommerceProject.Models
         public string TargetSex { get; set; } = "Unisex";
 
         /// <summary>
-        ///     If not null, a current promotion that has been applied to this product (ex. Buy 1 Get 1 Free, 20% off).
+        ///     A current promotion that has been applied to this product (ex. Buy One Get One Free, 20% off all electronics).
         ///     Null if there are no current promotions for this product.
         /// </summary>
-        [ForeignKey(nameof(Promotion))]
         [Display(Name = "Promotion")]
         public Promotion? Promotion { get; set; }
 
@@ -76,5 +75,8 @@ namespace ECommerceProject.Models
                 return RegularPrice;
             }
         }
+
+        [Display(Name = "Qty.")]
+        public int Quantity { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace ECommerceProject.Data
         {
         }
         public DbSet<User> Users { get; set; } = default!;
+        public DbSet<Address> Addresses { get; set; } = default!;
         public DbSet<Currency> Currencies { get; set; } = default!;
         public DbSet<Store> Stores { get; set; } = default!;
         public DbSet<Category> Categories { get; set; } = default!;

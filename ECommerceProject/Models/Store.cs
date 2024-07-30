@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Vitrine.Models;
 
 namespace ECommerceProject.Models
 {
@@ -27,6 +28,9 @@ namespace ECommerceProject.Models
 
         [Display(Name = "Default Currency")]
         public Currency DefaultCurrency { get; set; }
+
+        [Display(Name = "Time Format")]
+        public string TimeFormat { get; set; }
 
         [Display(Name = "File Storage Domain")]
         public string FileStorageDomain { get; set; }
